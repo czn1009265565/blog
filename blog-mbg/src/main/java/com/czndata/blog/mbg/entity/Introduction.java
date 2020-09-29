@@ -5,6 +5,8 @@ import java.util.Date;
 public class Introduction {
     private Integer id;
 
+    private Integer userId;
+
     private Date createTime;
 
     private Date updateTime;
@@ -17,6 +19,14 @@ public class Introduction {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Date getCreateTime() {

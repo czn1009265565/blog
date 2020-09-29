@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, summary, view_count, comment_count, `status`, create_time, update_time
+    id, title, summary, user_id, view_count, comment_count, `status`, create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -128,13 +129,13 @@
   </delete>
   <insert id="insert" parameterType="com.czndata.blog.mbg.entity.Article">
     insert into blog_article (id, title, summary, 
-      view_count, comment_count, `status`, 
-      create_time, update_time, content
-      )
+      user_id, view_count, comment_count, 
+      `status`, create_time, update_time, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
-      #{viewCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{userId,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.czndata.blog.mbg.entity.Article">
     insert into blog_article
@@ -147,6 +148,9 @@
       </if>
       <if test="summary != null">
         summary,
+      </if>
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="viewCount != null">
         view_count,
@@ -176,6 +180,9 @@
       </if>
       <if test="summary != null">
         #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="viewCount != null">
         #{viewCount,jdbcType=INTEGER},
@@ -215,6 +222,9 @@
       <if test="record.summary != null">
         summary = #{record.summary,jdbcType=VARCHAR},
       </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
       <if test="record.viewCount != null">
         view_count = #{record.viewCount,jdbcType=INTEGER},
       </if>
@@ -243,6 +253,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       summary = #{record.summary,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
       view_count = #{record.viewCount,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
@@ -258,6 +269,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       summary = #{record.summary,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
       view_count = #{record.viewCount,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
@@ -275,6 +287,9 @@
       </if>
       <if test="summary != null">
         summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="viewCount != null">
         view_count = #{viewCount,jdbcType=INTEGER},
@@ -301,6 +316,7 @@
     update blog_article
     set title = #{title,jdbcType=VARCHAR},
       summary = #{summary,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},
@@ -313,6 +329,7 @@
     update blog_article
     set title = #{title,jdbcType=VARCHAR},
       summary = #{summary,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},

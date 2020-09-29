@@ -1,16 +1,3 @@
 spring:
-  freemarker:
-    template-loader-path: classpath:/templates
-    # 关闭缓存，及时刷新，上线生产环境需要修改为true
-    cache: false
-    charset: utf-8
-    check-template-location: true
-    content-type: text/html
-    expose-request-attributes: true
-    expose-session-attributes: true
-    request-context-attribute: request
-    suffix: .ftl
-    settings:
-      number_format: 0 # 防止数字加逗号
-  mvc:
-    static-path-pattern: /static/** # 静态文件路径配置，测试环境使用
+  profiles:
+    include: dev,password

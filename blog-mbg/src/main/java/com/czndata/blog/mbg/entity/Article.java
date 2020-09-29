@@ -9,6 +9,8 @@ public class Article {
 
     private String summary;
 
+    private Integer userId;
+
     private Integer viewCount;
 
     private Integer commentCount;
@@ -43,6 +45,14 @@ public class Article {
 
     public void setSummary(String summary) {
         this.summary = summary == null ? null : summary.trim();
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getViewCount() {

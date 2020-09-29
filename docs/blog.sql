@@ -4,6 +4,7 @@ create table `blog_article`(
     `title` varchar(255) not null comment '标题',
     `content` text comment '内容',
     `summary` varchar(500) not null comment '概要',
+    `user_id` int(11) not null comment '用户id',
     `view_count` int(11) not null default '0' comment '浏览次数',
     `comment_count` int(11) not null default '0' comment '评论次数',
     `status` int(4) not null default '0' comment '发布状态 0:未发布 1:已发布',
@@ -87,6 +88,7 @@ create unique index `username_index` using btree on `blog_user`(`username`);
 
 create table `blog_introduction`(
     `id` int(11) not null auto_increment primary key,
+    `user_id` int(11) not null comment '用户id',
     `introduction` text comment '自我介绍',
     `create_time` datetime not null default current_timestamp comment '创建时间',
     `update_time` datetime not null default current_timestamp comment '更新时间'

@@ -19,6 +19,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.czndata.blog</groupId>
+            <artifactId>blog-mbg</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.czndata.blog</groupId>
+            <artifactId>blog-service</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
