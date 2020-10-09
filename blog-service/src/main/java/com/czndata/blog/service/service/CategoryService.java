@@ -1,6 +1,7 @@
 package com.czndata.blog.service.service;
 
 import com.czndata.blog.service.dto.category.CategoryCountDto;
+import com.czndata.blog.service.dto.category.CategoryDto;
 import com.czndata.blog.service.dto.category.CategoryParam;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface CategoryService {
 
     /**
      * 分类列表
-     * @return List<CategoryCountDto>
+     * @return List<CategoryDto>
      */
-    List<CategoryCountDto> list();
+    List<CategoryDto> list();
 }

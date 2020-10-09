@@ -1,9 +1,11 @@
 package com.czndata.blog.service.dto.article;
 
-import com.czndata.blog.service.dto.category.CategoryDto;
+import com.czndata.blog.service.dto.comment.CommentDto;
+import com.czndata.blog.service.dto.user.UserDto;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class ArticleDetailDto {
@@ -13,13 +15,15 @@ public class ArticleDetailDto {
 
     private String content;
 
-    private CategoryDto categoryDto;
-
     private Date createTime;
-
-    private String username;
 
     private Integer commentCount;
 
     private Integer viewCount;
+
+    private UserDto userDto;
+
+    private List<CommentDto> commentDtoList;
+
+    private List<String> direcotryList; // 目录
 }

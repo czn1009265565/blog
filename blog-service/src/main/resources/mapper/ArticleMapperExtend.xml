@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czndata.blog.service.dao.ArticleMapperExtend">
+    <select id="countArticleByCreateTime" resultType="com.czndata.blog.service.dto.article.ArticleArchiveDto">
+        select
+        date_format(create_time, "%Y年%m月") as date,
+        count(*) as articleCount
+        from
+        blog_article
+        group by date_format(create_time, "%Y年%m月")
+        order by date_format(create_time, "%Y年%m月") desc
+        ;
+    </select>
+
+    <select id="selectArticle" resultType="com.czndata.blog.service.dto.article.ArticleSummaryDto">
+        select
+        a.id,
+        a.title,
+        a.summary,
+        a.create_time as createTime,
+        u.username,
+        a.comment_count as commentCount,
+        a.view_count as viewCount
+        from
+        blog_article as a
+        left join blog_user as u on a.user_id=u.id
+        order by a.create_time DESC
+    </select>
+</mapper>

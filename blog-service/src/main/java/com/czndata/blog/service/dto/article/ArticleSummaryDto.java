@@ -1,6 +1,5 @@
 package com.czndata.blog.service.dto.article;
 
-import com.czndata.blog.service.dto.category.CategoryDto;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,8 +11,6 @@ public class ArticleSummaryDto {
     private String title;
 
     private String summary;
-
-    private CategoryDto categoryDto;
 
     private Date createTime;
 

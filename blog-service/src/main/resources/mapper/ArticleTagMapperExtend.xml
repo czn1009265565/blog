@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czndata.blog.service.dao.ArticleTagMapperExtend">
+    <insert id="insertList">
+        insert into
+        blog_article_tag(`article_id`,`tag_id`)
+        values
+        <foreach collection="list"  separator="," item="articleTag">
+            (#{articleTag.articleId}, #{articleTag.tagId})
+        </foreach>
+    </insert>
+
+    <select id="selectArticleByTagId" resultType="com.czndata.blog.service.dto.article.ArticleSummaryDto">
+        select
+        a.id,
+        a.title,
+        a.summary,
+        a.create_time as createTime,
+        u.username,
+        a.comment_count as commentCount,
+        a.view_count as viewCount
+        from
+        blog_article_tag as atg
+        left join blog_article as a on atg.article_id=a.id
+        left join blog_user as u on a.user_id=u.id
+        where atg.tag_id=#{tagId}
+        order by a.create_time DESC
+    </select>
+</mapper>

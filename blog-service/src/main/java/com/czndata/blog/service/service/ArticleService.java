@@ -1,6 +1,8 @@
 package com.czndata.blog.service.service;
 
 import com.czndata.blog.service.dto.article.*;
+import com.github.pagehelper.PageInfo;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -10,6 +12,7 @@ public interface ArticleService {
      * @param articleParam 文章param
      * @return count
      */
+    @Transactional
     int create(ArticleParam articleParam);
 
     /**
@@ -17,6 +20,7 @@ public interface ArticleService {
      * @param articleId 文章id
      * @return count
      */
+    @Transactional
     int delete(Integer articleId);
 
     /**
@@ -25,12 +29,11 @@ public interface ArticleService {
      * @param articleParam 文章参数
      * @return count
      */
+    @Transactional
     int update(Integer articleId, ArticleParam articleParam);
 
-
-    List<ArticleSummaryDto> list();
-    List<ArticleSummaryDto> list(ArticleSearch articleSearch);
-    List<ArticleSummaryDto> list(Integer pageNum, Integer pageSize, ArticleSearch articleSearch);
+    PageInfo<ArticleSummaryDto> list(ArticleSearch articleSearch);
+    PageInfo<ArticleSummaryDto> list(Integer pageNum, Integer pageSize, ArticleSearch articleSearch);
 
     /**
      * 文章详情
@@ -44,4 +47,10 @@ public interface ArticleService {
      * @return List<ArticleNewestDto>
      */
     List<ArticleNewestDto> newest();
+
+    /**
+     * 文章归档数据展示
+     * @return List<ArticleArchiveDto>
+     */
+    List<ArticleArchiveDto> archive();
 }

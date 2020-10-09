@@ -3,17 +3,22 @@ package com.czndata.blog.service.service.impl;
 import com.czndata.blog.mbg.dao.CategoryMapper;
 import com.czndata.blog.mbg.entity.Category;
 import com.czndata.blog.mbg.entity.CategoryExample;
-import com.czndata.blog.service.dto.category.CategoryCountDto;
+import com.czndata.blog.service.dto.category.CategoryDto;
 import com.czndata.blog.service.dto.category.CategoryParam;
 import com.czndata.blog.service.enums.ResultEnum;
 import com.czndata.blog.service.exception.BlogException;
 import com.czndata.blog.service.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Slf4j
+@Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryMapper categoryMapper;
@@ -50,7 +55,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryCountDto> list() {
-        return null;
+    public List<CategoryDto> list() {
+        List<Category> categoryList = categoryMapper.selectByExample(new CategoryExample());
+        return categoryList.stream()
+                .map(i -> {
+                    CategoryDto categoryDto = new CategoryDto();
+                    BeanUtils.copyProperties(i, categoryDto);
+                    return categoryDto;
+                })
+                .collect(Collectors.toList());
     }
 }

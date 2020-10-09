@@ -45,7 +45,9 @@
 
 
         <!-- 简写 -->
-        <table tableName="blog_article" domainObjectName="Article" />
+        <table tableName="blog_article" domainObjectName="Article">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
         <table tableName="blog_tag" domainObjectName="Tag" />
         <table tableName="blog_category" domainObjectName="Category" />
         <table tableName="blog_article_tag" domainObjectName="ArticleTag" />

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czndata.blog.service.dao.ArticleCategoryMapperExtend">
+    <select id="countArticleByCategoryId" resultType="com.czndata.blog.service.dto.category.CategoryCountDto">
+        select
+        c.id,
+        c.category_name as categoryName,
+        t.article_count as articleCount
+        from
+        blog_category as c
+        left join(
+            select
+            category_id,
+            count(*) as article_count
+            from blog_article_category
+            group by category_id
+        )as t on c.id=t.category_id
+        order by t.article_count desc;
+    </select>
+
+    <insert id="insertList">
+        insert into
+        blog_article_category(`article_id`,`category_id`)
+        values
+        <foreach collection="list"  separator="," item="articleCategory">
+            (#{articleCategory.articleId}, #{articleCategory.categoryId})
+        </foreach>
+    </insert>
+
+    <select id="selectArticleByCategoryId" resultType="com.czndata.blog.service.dto.article.ArticleSummaryDto">
+        select
+        a.id,
+        a.title,
+        a.summary,
+        a.create_time as createTime,
+        u.username,
+        a.comment_count as commentCount,
+        a.view_count as viewCount
+        from
+        blog_article_category as ac
+        left join blog_article as a on ac.article_id=a.id
+        left join blog_user as u on a.user_id=u.id
+        where ac.category_id=#{categoryId}
+        order by a.create_time DESC
+    </select>
+</mapper>

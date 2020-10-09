@@ -9,7 +9,10 @@ public enum ResultEnum {
     OTHER_ERROR(2, "未知异常"),
 
     EXIST_TAG(10, "标签已存在"),
-    EXIST_CATEGORY(11, "分类已存在")
+    EXIST_CATEGORY(11, "分类已存在"),
+    NOT_EXIST_TAG(12, "标签不存在"),
+    NOT_EXIST_CATEGORY(13, "分类不存在"),
+    NOT_EXIST_ARTICLE(14, "文章不存在"),
     ;
 
     private Integer code;
