@@ -7,6 +7,7 @@
         count(*) as articleCount
         from
         blog_article
+        where status=1
         group by date_format(create_time, "%Y年%m月")
         order by date_format(create_time, "%Y年%m月") desc
         ;
@@ -24,6 +25,19 @@
         from
         blog_article as a
         left join blog_user as u on a.user_id=u.id
+        where a.status=1
         order by a.create_time DESC
     </select>
+
+    <update id="addViewCountById">
+        update blog_article set view_count=view_count+1 where id=#{articleId};
+    </update>
+
+    <update id="addCommentCountById">
+        update blog_article set comment_count=comment_count+1 where id=#{articleId};
+    </update>
+
+    <update id="subCommentCountById">
+        update blog_article set comment_count=comment_count-1 where id=#{articleId};
+    </update>
 </mapper>

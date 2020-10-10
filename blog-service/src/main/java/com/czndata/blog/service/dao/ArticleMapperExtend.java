@@ -9,4 +9,10 @@ public interface ArticleMapperExtend {
     List<ArticleArchiveDto> countArticleByCreateTime();
 
     List<ArticleSummaryDto> selectArticle();
+
+    void addViewCountById(Integer articleId);
+
+    void addCommentCountById(Integer articleId);
+
+    void subCommentCountById(Integer articleId);
 }

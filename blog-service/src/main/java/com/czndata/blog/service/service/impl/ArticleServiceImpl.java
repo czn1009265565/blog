@@ -7,6 +7,7 @@ import com.czndata.blog.service.dao.ArticleCategoryMapperExtend;
 import com.czndata.blog.service.dao.ArticleMapperExtend;
 import com.czndata.blog.service.dao.ArticleTagMapperExtend;
 import com.czndata.blog.service.dto.article.*;
+import com.czndata.blog.service.enums.ArticleStatusEnum;
 import com.czndata.blog.service.enums.ResultEnum;
 import com.czndata.blog.service.exception.BlogException;
 import com.czndata.blog.service.service.*;
@@ -59,7 +60,7 @@ public class ArticleServiceImpl implements ArticleService {
         BeanUtils.copyProperties(articleParam, article);
         String summary = article.getContent().substring(0, Math.min(BlogConstant.SUMMARY_LENGTH, article.getContent().length()));
         summary = Jsoup.parse(MarkdownUtils.markdown2Html(summary)).text();
-        article.setSummary(summary);
+        article.setSummary(summary+"...");
         int count = articleMapper.insertSelective(article);
         log.info("新建文章 title:{}", articleParam.getTitle());
 
@@ -102,6 +103,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public void addViewCount(Integer articleId) {
+        articleMapperExtend.addViewCountById(articleId);
+    }
+
+    @Override
     public PageInfo<ArticleSummaryDto> list(ArticleSearch articleSearch) {
         return list(null, null, articleSearch);
     }
@@ -130,7 +136,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDetailDto detail(Integer articleId) {
         Article article = articleMapper.selectByPrimaryKey(articleId);
-        if (article == null) throw new BlogException(ResultEnum.NOT_EXIST_ARTICLE);
+        // 若article不存在或未发布 则抛出异常
+        if (article == null || ArticleStatusEnum.NOT_PUBLISH.getCode().equals(article.getStatus())){
+            throw new BlogException(ResultEnum.NOT_EXIST_ARTICLE);
+        }
 
         ArticleDetailDto articleDetailDto = new ArticleDetailDto();
         BeanUtils.copyProperties(article, articleDetailDto);
@@ -152,7 +161,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleNewestDto> newest() {
         ArticleExample articleExample = new ArticleExample();
-        // 展示最新三篇博文
+        articleExample.or().andStatusEqualTo(ArticleStatusEnum.PUBLISH.getCode());
+        // 展示最新已发布三篇博文
         articleExample.setOrderByClause("create_time DESC limit 3");
 
         List<Article> articleList = articleMapper.selectByExample(articleExample);

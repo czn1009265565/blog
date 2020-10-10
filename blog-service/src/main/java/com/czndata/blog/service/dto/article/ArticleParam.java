@@ -17,7 +17,6 @@ public class ArticleParam {
     @NotBlank(message = "文章内容不能为空")
     private String content;
 
-    @NotNull(message = "用户编号不能为空")
     private Integer userId;
 
     @NotEmpty(message = "文章标签不能为空")

@@ -86,18 +86,16 @@
                         </#list>
                     </ul>
                 </div>
-
                 <div class="widget widget-category">
                     <h3 class="widget-title">分类</h3>
                     <ul>
                         <#list categoryCountDtoList as category>
                             <li>
-                                <a href="/?categoryId=${category.id}">${category.categoryName}<span class="post-count">(${category.articleCount})</span></a>
+                                <a href="/?categoryId=${category.id}">${category.categoryName}<span class="post-count">(${category.articleCount!"0"})</span></a>
                             </li>
                         </#list>
                     </ul>
                 </div>
-
                 <div class="widget widget-tag-cloud">
                     <h3 class="widget-title">标签云</h3>
                     <ul>

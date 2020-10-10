@@ -2,6 +2,7 @@ package com.czndata.blog.service.service;
 
 import com.czndata.blog.service.dto.article.*;
 import com.github.pagehelper.PageInfo;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public interface ArticleService {
      */
     @Transactional
     int update(Integer articleId, ArticleParam articleParam);
+
+    @Async
+    void addViewCount(Integer articleId);
 
     PageInfo<ArticleSummaryDto> list(ArticleSearch articleSearch);
     PageInfo<ArticleSummaryDto> list(Integer pageNum, Integer pageSize, ArticleSearch articleSearch);

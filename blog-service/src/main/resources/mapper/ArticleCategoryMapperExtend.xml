@@ -12,7 +12,9 @@
             select
             category_id,
             count(*) as article_count
-            from blog_article_category
+            from blog_article_category as bac
+            left join blog_article as a on bac.article_id=a.id
+            where a.status=1
             group by category_id
         )as t on c.id=t.category_id
         order by t.article_count desc;
@@ -40,7 +42,7 @@
         blog_article_category as ac
         left join blog_article as a on ac.article_id=a.id
         left join blog_user as u on a.user_id=u.id
-        where ac.category_id=#{categoryId}
+        where ac.category_id=#{categoryId} and a.status=1
         order by a.create_time DESC
     </select>
 </mapper>

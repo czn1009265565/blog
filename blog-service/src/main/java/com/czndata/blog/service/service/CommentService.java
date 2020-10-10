@@ -2,6 +2,7 @@ package com.czndata.blog.service.service;
 
 import com.czndata.blog.service.dto.comment.CommentDto;
 import com.czndata.blog.service.dto.comment.CommentParam;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ public interface CommentService {
      * @param commentParam comment
      * @return count
      */
+    @Transactional
     int create(CommentParam commentParam);
 
     /**
@@ -18,6 +20,7 @@ public interface CommentService {
      * @param commentId 评论id
      * @return count
      */
+    @Transactional
     int delete(Integer commentId);
 
     /**

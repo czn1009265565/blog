@@ -37,6 +37,13 @@
             <version>0.10.0</version>
         </dependency>
 
+        <!-- markdown table 插件 -->
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-gfm-tables</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+
         <!-- jsoup -->
         <dependency>
             <!-- jsoup HTML parser library @ https://jsoup.org/ -->

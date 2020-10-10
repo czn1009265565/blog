@@ -13,6 +13,7 @@ public enum ResultEnum {
     NOT_EXIST_TAG(12, "标签不存在"),
     NOT_EXIST_CATEGORY(13, "分类不存在"),
     NOT_EXIST_ARTICLE(14, "文章不存在"),
+    NOT_EXIST_COMMENT(15, "评论不存在")
     ;
 
     private Integer code;

@@ -23,7 +23,7 @@
         blog_article_tag as atg
         left join blog_article as a on atg.article_id=a.id
         left join blog_user as u on a.user_id=u.id
-        where atg.tag_id=#{tagId}
+        where atg.tag_id=#{tagId} and a.status=1
         order by a.create_time DESC
     </select>
 </mapper>

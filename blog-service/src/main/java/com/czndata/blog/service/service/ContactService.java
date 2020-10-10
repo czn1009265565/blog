@@ -2,6 +2,7 @@ package com.czndata.blog.service.service;
 
 import com.czndata.blog.mbg.entity.Contact;
 import com.czndata.blog.service.dto.contact.ContactParam;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -24,5 +25,5 @@ public interface ContactService {
      * 留言列表
      * @return List<Contact>
      */
-    List<Contact> list();
+    PageInfo<Contact> list(Integer pageNum, Integer pageSize);
 }
