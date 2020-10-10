@@ -37,15 +37,4 @@ public class ArticleController {
         articleService.addViewCount(id);
         return new ModelAndView("single");
     }
-//    @PostMapping
-//    @ResponseBody
-//    public ResponseVO create(@Valid ArticleParam articleParam){
-//        String title = articleParam.getTitle();
-//
-//        int num = articleService.create(articleParam);
-//        if (num == 1){
-//            return ResponseVO.success(String.format("创建文章:%s 成功", title));
-//        }
-//        return ResponseVO.success(String.format("创建文章:%s 失败", title));
-//    }
 }
