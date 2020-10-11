@@ -5,6 +5,17 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0 # Redis数据库选择默认为0
+    lettuce:
+      pool:
+        max-active: 8 # 连接池最大连接数(-1表示没有限制)
+        max-wait: -1 # 连接池最大阻塞等待时间
+        max-idle: 8 # 连接池最大空闲连接
+        min-idle: 0 # 连接池中最小空闲连接
+
   freemarker:
     template-loader-path: classpath:/templates
     cache: false
@@ -22,8 +33,8 @@ spring:
     static-path-pattern: /static/**
 
 mybatis:
-  configuration:
-    # 控制台日志配置,打出执行的sql语句
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    # 控制台日志配置,打出执行的sql语句
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:mapper/*.xml # classpath:mapper/*/*.xml
 
