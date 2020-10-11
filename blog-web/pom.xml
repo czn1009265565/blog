@@ -75,6 +75,13 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.17</version>
         </dependency>
+
+        <!-- 集成ELK -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
+        </dependency>
     </dependencies>
 
     <build>
