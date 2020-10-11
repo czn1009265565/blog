@@ -18,7 +18,7 @@
                         <h1 class="entry-title">${articleDetailDto.title}</h1>
                         <div class="entry-meta">
                             <span class="post-date"><a href="#"><time class="entry-date">${articleDetailDto.createTime?datetime}</time></a></span>
-                            <span class="post-author"><a href="#">${articleDetailDto.userDto.username}</a></span>
+                            <span class="post-author"><a href="/about?userId=${articleDetailDto.userDto.id}">${articleDetailDto.userDto.username}</a></span>
                             <span class="comments-link"><a href="#">${articleDetailDto.commentCount} 评论</a></span>
                             <span class="views-count"><a href="#">${articleDetailDto.viewCount} 阅读</a></span>
                         </div>

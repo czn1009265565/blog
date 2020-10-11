@@ -55,7 +55,6 @@
         <table tableName="blog_comment" domainObjectName="Comment" />
         <table tableName="blog_contact" domainObjectName="Contact" />
         <table tableName="blog_user" domainObjectName="User" />
-        <table tableName="blog_introduction" domainObjectName="Introduction" />
 
     </context>
 </generatorConfiguration>

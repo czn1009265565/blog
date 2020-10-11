@@ -9,5 +9,6 @@ public interface ArticleTagService {
     @Transactional
     void insertList(List<Integer> tagIds, Integer articleId);
 
+    @Transactional
     int deleteByArticleId(Integer articleId);
 }

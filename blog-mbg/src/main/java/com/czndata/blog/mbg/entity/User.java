@@ -17,6 +17,8 @@ public class User {
 
     private Date updateTime;
 
+    private String introduction;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction == null ? null : introduction.trim();
     }
 }
