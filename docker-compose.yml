@@ -1,0 +1,72 @@
+version: '3.2'
+
+services:
+  blog_nginx:
+    image: nginx
+    container_name: blog_nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/static/:/root/static/
+    ports:
+      - 80:80
+      - 8080:8080
+    networks:
+      - blog
+    restart: always
+    depends_on:
+      - blog_web
+
+  blog_web:
+    build: ./blog-web
+    container_name: blog_web
+    environment:
+      - TZ=Asia/Shanghai
+    restart: always
+    depends_on:
+      - blog_mysql
+      - blog_redis
+    networks:
+      - blog
+
+  blog_admin:
+    build: ./blog-admin
+    container_name: blog_admin
+    environment:
+      - TZ=Asia/Shanghai
+    restart: always
+    depends_on:
+      - blog_mysql
+      - blog_redis
+    networks:
+      - blog
+
+  blog_mysql:
+    image: mysql:5.7
+    container_name: blog_mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=blog
+      - TZ=Asia/Shanghai
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - blog
+    restart: always
+
+  blog_redis:
+    image: redis
+    container_name: blog_redis
+    volumes:
+      - redis:/data/
+    networks:
+      - blog
+    restart: always
+
+volumes:
+  mysql:
+  redis:
+networks:
+  blog:

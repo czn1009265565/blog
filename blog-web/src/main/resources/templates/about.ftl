@@ -15,7 +15,7 @@
                 <h1 class="page-title">关于我</h1>
                 <article class="post">
                     <div class="entry-content clearfix" id="content">
-                        ${userDto.introduction}
+                        ${userDto.introduction!""}
                     </div>
                 </article>
             </main>
