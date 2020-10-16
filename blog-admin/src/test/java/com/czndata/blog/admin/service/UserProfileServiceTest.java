@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-@SpringBootTest
+//@SpringBootTest
 public class UserProfileServiceTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -24,6 +24,5 @@ public class UserProfileServiceTest {
         user.setEnabled(1);
         user.setRoles("ROLE_ADMIN");
         userMapper.insertSelective(user);
-//        System.out.println(passwordEncoder.encode("root"));
     }
 }

@@ -15,7 +15,8 @@ public enum ResultEnum {
     NOT_EXIST_ARTICLE(14, "文章不存在"),
     NOT_EXIST_COMMENT(15, "评论不存在"),
     NOT_EXIST_INTRODUCTION(16, "自我接收不存在"),
-    NOT_EXIST_USER(17, "用户不存在")
+    NOT_EXIST_USER(17, "用户不存在"),
+    USERNAME_IS_EMPTY(18, "用户名为空")
     ;
 
     private Integer code;

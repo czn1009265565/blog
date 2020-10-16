@@ -78,7 +78,7 @@ create table `blog_contact`(
 create table `blog_user`(
     `id` int(11) not null auto_increment primary key,
     `username` varchar(50) not null,
-    `password` varchar(50) not null,
+    `password` varchar(100) not null,
     `enabled` int(4) not null default '0' comment '用户是否可用 0:不可用 1:可用',
     `roles` varchar(255) comment '用户角色，多个角色之间用逗号分隔',
     `introduction` text comment '自我介绍',

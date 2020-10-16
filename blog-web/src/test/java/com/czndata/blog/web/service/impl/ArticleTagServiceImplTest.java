@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class ArticleTagServiceImplTest {
     @Autowired
     private ArticleTagService articleTagService;

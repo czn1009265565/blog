@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 
-@SpringBootTest
+//@SpringBootTest
 public class ArticleServiceImplTest {
 
     @Autowired
