@@ -86,7 +86,15 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int update(Integer articleId, ArticleParam articleParam) {
         Article article = articleMapper.selectByPrimaryKey(articleId);
-        if (article == null) throw new BlogException(ResultEnum.NOT_EXIST_ARTICLE);
+        if (article == null){
+            log.error("文章不存在 articleId:{} title:{} [article update]",articleId, articleParam.getTitle());
+            throw new BlogException(ResultEnum.NOT_EXIST_ARTICLE);
+        }
+        // 如果文章所属用户不同则抛出异常
+        if (!article.getUserId().equals(articleParam.getUserId())){
+            log.error("文章不属于该作者 articleId:{} userId:{} [article update]", articleId, articleParam.getUserId());
+            throw new BlogException(ResultEnum.NOT_EXIST_ARTICLE);
+        }
 
         Article articleUpdate = new Article();
         BeanUtils.copyProperties(articleParam, articleUpdate);
