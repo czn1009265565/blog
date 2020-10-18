@@ -23,12 +23,12 @@ public class ResponseVO<T> {
         this.data = data;
     }
 
-    public static ResponseVO failed(ResultEnum resultEnum){
-        return new ResponseVO(resultEnum.getCode(), resultEnum.getDesc());
+    public static ResponseVO<String> failed(ResultEnum resultEnum){
+        return new ResponseVO<>(resultEnum.getCode(), resultEnum.getDesc());
     }
 
-    public static ResponseVO failed(Integer code, String message){
-        return new ResponseVO(code, message);
+    public static ResponseVO<String> failed(Integer code, String message){
+        return new ResponseVO<>(code, message);
     }
 
     public static <T>ResponseVO<T> success(T data){

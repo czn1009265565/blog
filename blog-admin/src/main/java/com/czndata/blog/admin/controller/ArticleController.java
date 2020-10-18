@@ -9,13 +9,12 @@ import com.czndata.blog.service.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 @Slf4j
 @RestController
@@ -41,6 +40,15 @@ public class ArticleController {
 
         articleService.update(articleId, articleParam);
         return ResponseVO.success(articleParam.getTitle());
+    }
+
+    @DeleteMapping("/{articleId}")
+    public ResponseVO<String> delete(@PathParam("articleId") Integer articleId){
+        if (articleId == null){
+            return ResponseVO.failed(ResultEnum.PARAM_ERROR.getCode(), "articleId不能为空");
+        }
+        articleService.delete(articleId);
+        return ResponseVO.success(null);
     }
 
 }

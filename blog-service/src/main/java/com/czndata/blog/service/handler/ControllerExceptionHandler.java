@@ -4,6 +4,7 @@ import com.czndata.blog.service.enums.ResultEnum;
 import com.czndata.blog.service.exception.BlogException;
 import com.czndata.blog.service.vo.ResponseVO;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,6 +28,18 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public ResponseVO notValidExceptionHandle(MethodArgumentNotValidException e) {
+        BindingResult bindingResult = e.getBindingResult();
+        Objects.requireNonNull(bindingResult.getFieldError()); // 空指针
+
+        Integer code = ResultEnum.PARAM_ERROR.getCode();
+        String message = bindingResult.getFieldError().getField() + " " + bindingResult.getFieldError().getDefaultMessage();
+        return ResponseVO.failed(code, message);
+    }
+
+    // Spring Boot 2.3弃用validation
+    @ExceptionHandler(BindException.class)
+    @ResponseBody
+    public ResponseVO notValidExceptionHandle(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         Objects.requireNonNull(bindingResult.getFieldError()); // 空指针
 
