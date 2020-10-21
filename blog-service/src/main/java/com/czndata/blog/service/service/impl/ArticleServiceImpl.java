@@ -55,6 +55,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int create(ArticleParam articleParam) {
+        String title = articleParam.getTitle();
+        ArticleExample articleExample = new ArticleExample();
+        articleExample.or().andTitleEqualTo(title);
+        List<Article> articleList = articleMapper.selectByExample(articleExample);
+        if (articleList.size() != 0){
+            log.error("新建文章 文章已存在 title:{}", title);
+            throw new BlogException(ResultEnum.EXIST_ARTICLE);
+        }
+
         // insert Article
         Article article = new Article();
         BeanUtils.copyProperties(articleParam, article);
