@@ -35,7 +35,7 @@ spring:
     static-path-pattern: /static/**
 
 mybatis:
-  #  configuration:
-  #    # 控制台日志配置,打出执行的sql语句
-  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  configuration:
+    # 控制台日志配置,打出执行的sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:mapper/*.xml # classpath:mapper/*/*.xml
