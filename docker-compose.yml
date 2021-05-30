@@ -22,9 +22,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     restart: always
-    depends_on:
-      - blog_mysql
-      - blog_redis
+#    depends_on:
+#      - blog_mysql
+#      - blog_redis
     networks:
       - blog
 
@@ -34,39 +34,39 @@ services:
     environment:
       - TZ=Asia/Shanghai
     restart: always
-    depends_on:
-      - blog_mysql
-      - blog_redis
+#    depends_on:
+#      - blog_mysql
+#      - blog_redis
     networks:
       - blog
 
-  blog_mysql:
-    image: mysql:5.7
-    container_name: blog_mysql
-    ports:
-      - 3306:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=blog
-      - TZ=Asia/Shanghai
-    volumes:
-      - mysql:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
-    networks:
-      - blog
-    restart: always
+#  blog_mysql:
+#    image: mysql:5.7
+#    container_name: blog_mysql
+#    ports:
+#      - 3306:3306
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#      - MYSQL_DATABASE=blog
+#      - TZ=Asia/Shanghai
+#    volumes:
+#      - mysql:/var/lib/mysql
+#      - ./mysql/my.cnf:/etc/mysql/my.cnf
+#    networks:
+#      - blog
+#    restart: always
+#
+#  blog_redis:
+#    image: redis
+#    container_name: blog_redis
+#    volumes:
+#      - redis:/data/
+#    networks:
+#      - blog
+#    restart: always
 
-  blog_redis:
-    image: redis
-    container_name: blog_redis
-    volumes:
-      - redis:/data/
-    networks:
-      - blog
-    restart: always
-
-volumes:
-  mysql:
-  redis:
+#volumes:
+#  mysql:
+#  redis:
 networks:
   blog:
